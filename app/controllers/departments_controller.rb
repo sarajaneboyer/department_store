@@ -22,7 +22,21 @@ class DepartmentsController < ApplicationController
   end
 
   def edit
-    
+  end
+
+  def update
+    set_department
+
+    if @department.update(department_params)
+      redirect_to departments_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    set_department.destroy
+    redirect_to departments_path
   end
 
 
