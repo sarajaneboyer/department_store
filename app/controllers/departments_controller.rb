@@ -22,6 +22,7 @@ class DepartmentsController < ApplicationController
   end
 
   def edit
+    
   end
 
 
