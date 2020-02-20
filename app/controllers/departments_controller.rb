@@ -1,4 +1,5 @@
 class DepartmentsController < ApplicationController
+  #before_action :set_item
   before_action :set_department, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -10,6 +11,7 @@ class DepartmentsController < ApplicationController
 
   def new
     @department = Department.new
+
   end
 
   def create
@@ -47,6 +49,10 @@ class DepartmentsController < ApplicationController
 
     def department_params
        params.require(:department).permit(:name)
+    end
+
+    def set_item
+      @item = Item.find(params[:item_id])
     end
 
 end
