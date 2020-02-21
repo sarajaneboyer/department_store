@@ -10,7 +10,8 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = @department.items.new
+    #@item = @department.items.new
+    @item = Item.new(department_id: params[:department_id])
     render partial: "form"
   end
 
@@ -46,8 +47,12 @@ class ItemsController < ApplicationController
 
   private
 
+  def set_department
+    @department = Department.find(params[:department_id])
+  end
+
   def set_item
-    @item = Item.find(params[:item_id])
+    @item = Item.find(params[:id])
   end
 
   def item_params

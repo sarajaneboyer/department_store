@@ -1,8 +1,8 @@
 
-<%= form_for @department.item do |f| %>
+<%= form_for [@department, @item] do |f| %>
 <%= f.label :name %>
 <%= f.text_field :name, autofocus: true %><br />
 <%# <% hidden_field_tag :department_id, @department.id %>
-<% item.department_id = params[:department_id]%>
+<%# <% item.department_id = params[:department_id]%>
 <%= f.submit %>
 <% end %>
