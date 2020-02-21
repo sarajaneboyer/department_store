@@ -2,42 +2,46 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   
   def index
-    @items = Item.all
+    @items = @department.items
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def new
-    @item = Item.new
+    @item = @department.items.new
     render partial: "form"
   end
 
   def edit
+    @item = Item.find(params[:id])
     render partial: "form"
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = @department.items.new(items_params)
 
     if @item.save
-      redirect_to items_path
+      redirect_to [@department, @item]
     else
       render :new
     end
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to @item
+    @item = Item.find(params[:id])
+    if (@item.update(item_params))
+      redirect_to department_path(@department, @item)
     else
       render :edit
     end
   end
 
   def destroy
+    @item = Item.find(params[:id])
     @item.destroy
-    redirect_to items_path
+    redirect_to department_path
   end
 
   private
